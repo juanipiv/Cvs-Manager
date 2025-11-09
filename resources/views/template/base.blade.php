@@ -25,7 +25,7 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('curriculum.create') }}">Add entry</a>
+              <a class="nav-link" href="{{ route('curriculum.create') }}">Añadir CVs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('curriculum.index') }}">Ver CVs</a>
