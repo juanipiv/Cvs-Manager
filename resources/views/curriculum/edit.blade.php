@@ -52,24 +52,88 @@
     </div>
 
     <div class="mb-3">
-        <label for="image" class="form-label">Foto actual:</label><br>
-        @if($curriculum->path)
-            <img src="{{ asset('storage/' . $curriculum->path) }}" alt="Foto actual" width="150" class="mb-2">
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="remove_image" name="remove_image" value="1">
-                <label class="form-check-label" for="remove_image">Eliminar foto actual</label>
-            </div>
-        @else
-            <p>No hay foto subida.</p>
-        @endif
-    </div>
+        <label for="image" class="form-label">Foto actual:</label>
 
-    <div class="mb-3">
-        <label for="image" class="form-label">Cambiar foto:</label>
-        <input type="file" class="form-control" id="image" name="image" accept="image/*">
-        <small class="form-text text-muted">Si seleccionas una nueva imagen, reemplazará la actual.</small>
+        <div id="drop-zone" 
+            class="border border-secondary rounded d-flex flex-column align-items-center justify-content-center p-4 text-center"
+            style="cursor: pointer; background-color: #f8f9fa;">
+
+            @php
+                $previewPath = $curriculum->path 
+                    ? asset('storage/' . $curriculum->path)
+                    : asset('assets/img/sin-foto.webp');
+            @endphp
+
+            <!-- Texto -->
+            <p class="mb-2" id="drop-text">Arrastra tu nueva imagen aquí o haz clic para seleccionarla</p>
+
+            <!-- Imagen previa -->
+            <img id="preview" 
+                src="{{ $previewPath }}" 
+                alt="Vista previa" 
+                class="img-thumbnail mt-2"
+                style="display: block; max-width: 200px; height: auto;">
+        </div>
+
+        <!-- Input de archivo oculto -->
+        <input type="file" id="image" name="image" accept="image/*" class="d-none">
+
+        <!-- Checkbox para eliminar la foto -->
+        @if($curriculum->path)
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" name="delete_image" id="delete_image">
+                <label class="form-check-label" for="delete_image">
+                    Eliminar foto actual
+                </label>
+            </div>
+        @endif
     </div>
 
     <button type="submit" class="btn btn-primary">Editar</button>
 </form>
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropZone = document.getElementById('drop-zone');
+            const inputFile = document.getElementById('image');
+            const preview = document.getElementById('preview');
+
+            // Clic sobre el área
+            dropZone.addEventListener('click', () => inputFile.click());
+
+            // Arrastrar archivo sobre el área
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-primary');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-primary');
+            });
+
+            // Soltar archivo
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-primary');
+                inputFile.files = e.dataTransfer.files;
+                updatePreview();
+            });
+
+            // Cambiar archivo desde input
+            inputFile.addEventListener('change', updatePreview);
+
+            function updatePreview() {
+                const file = inputFile.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 @endsection

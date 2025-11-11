@@ -43,9 +43,9 @@
             <td>{{ $curriculum->nombre }} {{ $curriculum->apellidos }}</td>
             <td>{{ $curriculum->nota_media }}</td>
             <td>
-                <a href="{{ route('curriculum.show', $curriculum->id) }}" class="btn btn-success">view</a>
-                <a href="{{ route('curriculum.edit', $curriculum->id) }}" class="btn btn-warning">edit</a>
-                <a data-title="{{$curriculum->title}}" data-href="{{ route('curriculum.destroy', $curriculum->id) }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">delete</a>
+                <a href="{{ route('curriculum.show', $curriculum->id) }}" class="btn btn-outline-success">view</a>
+                <a href="{{ route('curriculum.edit', $curriculum->id) }}" class="btn btn-outline-warning">edit</a>
+                <a data-title="{{$curriculum->title}}" data-href="{{ route('curriculum.destroy', $curriculum->id) }}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">delete</a>
             </td>
         </tr>
         @empty

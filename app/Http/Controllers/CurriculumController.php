@@ -91,26 +91,27 @@ class curriculumController extends Controller
 
     public function update(Request $request, Curriculum $curriculum){
         try {
-            // actualizamos los campos normales
-            $curriculum->fill($request->except('image', 'remove_image'));
+            // 1️⃣ Actualizar los campos del formulario excepto la imagen y el checkbox
+            $curriculum->fill($request->except('image', 'delete_image'));
             $curriculum->save();
 
-            // si marco eliminar foto
-            if ($request->has('remove_image') && $request->remove_image == 1) {
-                if ($curriculum->path && \Storage::disk('public')->exists($curriculum->path)) {
-                    \Storage::disk('public')->delete($curriculum->path);
+            // 2️⃣ Si el usuario marcó "eliminar imagen"
+            if ($request->has('delete_image')) {
+                if ($curriculum->path && Storage::disk('public')->exists($curriculum->path)) {
+                    Storage::disk('public')->delete($curriculum->path);
                 }
                 $curriculum->path = null;
                 $curriculum->save();
             }
 
-            // si sube una nueva imagen
+            // 3️⃣ Si se sube una nueva imagen
             if ($request->hasFile('image')) {
-                // borramos la anterior si existe
-                if ($curriculum->path && \Storage::disk('public')->exists($curriculum->path)) {
-                    \Storage::disk('public')->delete($curriculum->path);
+                // Si ya tenía una, la borramos antes
+                if ($curriculum->path && Storage::disk('public')->exists($curriculum->path)) {
+                    Storage::disk('public')->delete($curriculum->path);
                 }
 
+                // Guardamos la nueva imagen
                 $fileName = $curriculum->id . '.' . $request->file('image')->getClientOriginalExtension();
                 $path = $request->file('image')->storeAs('images', $fileName, 'public');
 
@@ -118,10 +119,13 @@ class curriculumController extends Controller
                 $curriculum->save();
             }
 
+            // 4️⃣ Redirigimos con mensaje
             return redirect()->route('main.index')->with('success', 'Currículum actualizado correctamente.');
 
         } catch (\Exception $e) {
-            return back()->withErrors(['general' => 'Error al actualizar el currículum: ' . $e->getMessage()]);
+            return back()->withErrors([
+                'general' => 'Error al actualizar el currículum: ' . $e->getMessage()
+            ]);
         }
     }
 
