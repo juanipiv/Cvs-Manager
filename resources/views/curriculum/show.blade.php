@@ -12,7 +12,7 @@
 				    <div class="col">
 					    <div class="row p-4 justify-content-center justify-content-md-between">
 						    <div class="primary-info col-auto">
-							    <h1 class="name mt-0 mb-1 text-black text-uppercase text-uppercase">{{ $curriculum->nombre }} {{ $curriculum->apellidos }}</h1>
+							    <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">{{ $curriculum->nombre }} {{ $curriculum->apellidos }}</h1>
 							    <div class="title mb-3">Nota Media: {{ $curriculum->nota_media }}</div>
 							    <ul class="list-unstyled">
 								    <li class="mb-2"><a class="text-link" href="#"><i class="far fa-envelope fa-fw me-2" data-fa-transform="grow-3"></i>{{ $curriculum->email }}</a></li>
@@ -20,7 +20,6 @@
 							    </ul>
 						    </div><!--//primary-info-->
 					    </div><!--//row-->
-					    
 				    </div><!--//col-->
 			    </div><!--//row-->
 		    </header>
@@ -30,10 +29,6 @@
 				    <div class="resume-section-content">
 					    <p class="mb-0">{{ $curriculum->experiencia }}</p>
 				    </div>
-
-				    
-
-				    
 			    </section><!--//summary-section-->
 			    <div class="row">
 				    <div class="col-lg-9">

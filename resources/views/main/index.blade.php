@@ -25,6 +25,8 @@
     @forelse($curriculums as $curriculum)
       <div class="col-md-4 mb-3">
         <div class="card" style="width: 18rem;">
+          <!-- {{ $curriculum->path ? asset('storage/' . $curriculum->path) : asset('assets/img/sin-foto.webp') }} || 
+               Esto quiere decir: si $curriculum->path tiene valor genera la url a la foto que se subio, si no, se le asigna imagen por defecto  -->
           <img class="card-img-top"
                 src="{{ $curriculum->path ? asset('storage/' . $curriculum->path) : asset('assets/img/sin-foto.webp') }}"
                 alt="Foto de {{ $curriculum->nombre }}">
@@ -55,18 +57,24 @@
 @endsection
 
 @section('scripts')
+  <script>
+      // Espera a que el documento HTML esté completamente cargado
+      document.addEventListener('DOMContentLoaded', function () {
+          // Selecciona todos los botones que abren el modal de borrado
+          const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
+          // Selecciona el formulario que se usará para enviar la petición DELETE
+          const formDelete = document.getElementById('form-delete');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
-    const formDelete = document.getElementById('form-delete');
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const action = this.getAttribute('data-href');
-            formDelete.setAttribute('action', action);
-        });
-    });
-});
-</script>
+          // Recorre cada botón de "delete"
+          deleteButtons.forEach(button => {
+              // Añade un listener para cuando se haga clic en él
+              button.addEventListener('click', function () {
+                  // Cuando se hace clic, obtiene la URL guardada en el atributo 'data-href' del botón específico     
+                  const action = this.getAttribute('data-href');
+                  // Asigna esa URL específica al atributo 'action' del formulario de borrado
+                  formDelete.setAttribute('action', action);
+              });
+          });
+      });
+  </script>
 @endsection

@@ -1,0 +1,97 @@
+/* --- Estilo de la Página --- */
+body {
+    background-color: #f8f9fa; /* Un fondo gris claro para que las tarjetas resalten */
+}
+
+/* --- Estilos de la Tarjeta (Card) --- */
+.card {
+    /* ¡IMPORTANTE! 
+     1. Borra el 'style="width: 18rem;"' de tu HTML.
+     2. Añade la clase 'h-100' (height: 100%) a tu tarjeta, así:
+        <div class="card h-100">
+     Esto hará que todas las tarjetas de una fila tengan la misma altura.
+    */
+    width: 100%; /* El 'col-md-4' ya controla el ancho */
+    border: none; /* Quita el borde por defecto */
+    border-radius: 12px; /* Esquinas más suaves */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Esto es para que el 'card-body' pueda crecer y empujar
+       los botones (.options) al fondo */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efecto de "levantarse" */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra más pronunciada */
+}
+
+/* --- Imagen de la Tarjeta --- */
+.card-img-top {
+    height: 200px; /* ¡Altura fija para TODAS las imágenes! */
+    object-fit: cover; /* Evita que la imagen se deforme. La recorta. */
+    border-top-left-radius: 12px; /* Redondea solo las esquinas superiores */
+    border-top-right-radius: 12px;
+}
+
+/* --- Cuerpo de la Tarjeta --- */
+.card-body {
+    /* Esto hace que el cuerpo crezca y ocupe el espacio
+       disponible, empujando .options hacia abajo */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-weight: 700;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Botones de Opciones --- */
+.options {
+    /* Borra el style="" de tu HTML, este CSS es mejor */
+    padding: 0 1.25rem 1.25rem; /* 1.25rem es el padding estándar del card-body */
+    display: flex;
+    flex-wrap: wrap; /* Para que no se rompa en móviles */
+    gap: 8px; /* Espacio moderno entre botones */
+}
+
+.options .btn {
+    font-weight: 600;
+}
+
+/* --- Modal de Borrado --- */
+#deleteModal .modal-header {
+    background-color: #dc3545; /* Rojo de "peligro" de Bootstrap */
+    color: white;
+}
+
+#deleteModal .modal-title {
+    font-weight: 600;
+}
+
+#deleteModal .btn-close {
+    /* Hace que la 'X' de cerrar sea blanca */
+    filter: invert(1) grayscale(100) brightness(200%);
+}
+
+/* --- Mensaje de @empty --- */
+p.text-center[wire\:loading\.remove] { /* Selector más específico para tu <p> */
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #777;
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}

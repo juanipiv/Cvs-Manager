@@ -32,12 +32,14 @@
         </tr>
     </thead>
 
-    <tbody>
-        @forelse($curriculums as $curriculum)
+    <tbody> 
+        @forelse($curriculums as $curriculum)<!-- Intenta recorrer la colección $curriculums -->
         <tr style=text-align:center;>
             <td >{{ $curriculum->id }}</td>
+            <!-- {{ $curriculum->path ? asset('storage/' . $curriculum->path) : asset('assets/img/sin-foto.webp') }} || 
+                 Esto quiere decir: si $curriculum->path tiene valor genera la url a la foto que se subio, si no, se le asigna imagen por defecto  -->
             <td><img class="card-img-top"
-                src="{{ $curriculum->path ? asset('storage/' . $curriculum->path) : asset('assets/img/sin-foto.webp') }}"
+                src="{{ $curriculum->path ? asset('storage/' . $curriculum->path) : asset('assets/img/sin-foto.webp') }}" 
                 alt="Foto de {{ $curriculum->nombre }}"
                 style="height:50px; width:50px; border-radius:10px;"></td>
             <td>{{ $curriculum->nombre }} {{ $curriculum->apellidos }}</td>
@@ -48,7 +50,7 @@
                 <a data-title="{{$curriculum->title}}" data-href="{{ route('curriculum.destroy', $curriculum->id) }}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">delete</a>
             </td>
         </tr>
-        @empty
+        @empty <!-- Si $curriculums está vacío, muestra esto en su lugar -->
             <p class="text-center">No hay currículums registrados.</p>
         @endforelse
     </tbody>
@@ -70,18 +72,24 @@
 @endsection
 
 @section('scripts')
+    <script>
+        // Espera a que el documento HTML esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function () {
+            // Selecciona todos los botones que abren el modal de borrado
+            const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
+            // Selecciona el formulario que se usará para enviar la petición DELETE
+            const formDelete = document.getElementById('form-delete');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
-    const formDelete = document.getElementById('form-delete');
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const action = this.getAttribute('data-href');
-            formDelete.setAttribute('action', action);
+            // Recorre cada botón de "delete"
+            deleteButtons.forEach(button => {
+                // Añade un listener para cuando se haga clic en él
+                button.addEventListener('click', function () {
+                    // Cuando se hace clic, obtiene la URL guardada en el atributo 'data-href' del botón específico     
+                    const action = this.getAttribute('data-href');
+                    // Asigna esa URL específica al atributo 'action' del formulario de borrado
+                    formDelete.setAttribute('action', action);
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 @endsection

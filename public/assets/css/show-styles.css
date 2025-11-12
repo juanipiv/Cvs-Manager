@@ -1,0 +1,118 @@
+/* --- Importación de Fuente (Opcional, pero recomendado) --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* --- Estilos Globales y del Contenedor --- */
+body {
+    font-family: Montserrat;
+    background-color: #f8f9fa; /* Un gris muy claro para el fondo de la página */
+    color: #555; /* Color de texto base */
+}
+
+.resume-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.resume-wrapper-inner {
+    max-width: 1100px; /* Limita el ancho del CV en pantallas grandes */
+    border-radius: 8px; /* Suaviza las esquinas de la "hoja" */
+    /* El shadow-lg de Bootstrap ya aplica la sombra */
+}
+
+/* --- Cabecera del Currículum (Header) --- */
+.resume-header {
+    background-color: #637692; /* Un azul/gris oscuro profesional */
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 30px; /* Espaciado interno */
+}
+
+/* --- Foto de Perfil --- */
+.resume-picture-holder {
+    margin-top: 1.8rem;
+    text-align: center; /* Asegura centrado en móvil */
+}
+
+.picture {
+    /* IMPORTANTE: Has puesto un style="" en tu HTML. 
+       Para que esto funcione, debes BORRAR el style de la etiqueta <img> 
+       o añadir !important a estas reglas. */
+    width: 200px !important;  
+    height: 200px !important;
+    border-radius: 50%; /* Foto circular */
+    border: 5px solid white; /* Borde blanco semi-transparente */
+    object-fit: cover; /* Asegura que la imagen no se deforme */
+    object-position: center center;
+}
+
+/* --- Información Primaria (Nombre, Título, Contacto) --- */
+.primary-info {
+    padding-top: 15px;
+}
+
+.primary-info .name {
+    font-size: 2.8rem; /* Nombre grande */
+    font-weight: 700;
+    color: white;
+}
+
+.primary-info .title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #EAECEF; /* Un blanco menos intenso */
+    margin-bottom: 1.5rem; /* Más espacio bajo el título */
+}
+
+.primary-info .list-unstyled {
+    font-size: 1rem;
+}
+
+.primary-info .list-unstyled li {
+    margin-bottom: 10px; /* Espacio entre email y teléfono */
+}
+
+.primary-info .text-link {
+    color: #EAECEF;
+    transition: color 0.3s ease; /* Efecto suave al pasar el ratón */
+}
+
+.primary-info .text-link:hover {
+    color: #ffffff; /* Blanco brillante en hover */
+    text-decoration: none;
+}
+
+.primary-info .text-link i {
+    color: #9FADB8; /* Color para los iconos */
+    font-size: 1.1rem;
+    width: 25px; /* Alinea los iconos */
+    text-align: center;
+}
+
+
+/* --- Cuerpo del Currículum (Body) --- */
+.resume-body {
+    /* p-5 de Bootstrap ya aplica 3rem de padding */
+    background-color: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- Títulos de Sección (Experiencia, Formación, etc.) --- */
+.resume-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50; /* Un azul oscuro para los títulos */
+    text-transform: uppercase; /* Ya está en tu HTML, pero lo aseguro */
+    border-bottom: 3px solid #0d6efd; /* Línea de acento azul (Bootstrap primary) */
+    padding-bottom: 10px;
+    margin-bottom: 25px; /* Espacio después del título */
+}
+
+/* --- Contenido de la Sección --- */
+.resume-section-content p {
+    font-size: 1rem;
+    line-height: 1.6; /* Espacio entre líneas para mejor lectura */
+    color: #333; /* Color de texto principal (más oscuro que el body) */
+    white-space: pre-wrap; /* Respeta los saltos de línea y espacios de tu BD */
+}

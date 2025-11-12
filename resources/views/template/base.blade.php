@@ -9,6 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url('assets/css/styles.css?r=' . rand(1, 10000)) }}">
+    <link rel="stylesheet" href="{{ url('assets/css/show-styles.css?r=' . rand(1, 10000)) }}">
+    <link rel="stylesheet" href="{{ url('assets/css/cards-styles.css?r=' . rand(1, 10000)) }}">
+    <link rel="stylesheet" href="{{ url('assets/css/table-styles.css?r=' . rand(1, 10000)) }}">
   </head>
 
   <body>
