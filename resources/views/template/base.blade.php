@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ url('assets/css/show-styles.css?r=' . rand(1, 10000)) }}">
     <link rel="stylesheet" href="{{ url('assets/css/cards-styles.css?r=' . rand(1, 10000)) }}">
     <link rel="stylesheet" href="{{ url('assets/css/table-styles.css?r=' . rand(1, 10000)) }}">
+    <link rel="stylesheet" href="{{ url('assets/css/form-styles.css?r=' . rand(1, 10000)) }}">
+    <link rel="stylesheet" href="{{ url('assets/css/nav-styles.css?r=' . rand(1, 10000)) }}">
   </head>
 
   <body>

@@ -1,0 +1,68 @@
+/* --- Estilos Generales del Navbar --- */
+.navbar.bg-dark {
+    /* Usamos un color oscuro un poco más "profundo" que el de por defecto */
+    background-color: #22252A !important; /* !important es necesario para sobreescribir bg-dark */
+    padding: 1rem 0; /* Un poco más de espacio vertical */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Una sombra sutil */
+}
+
+/* --- Título / Brand --- */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ffffff !important; /* Asegurar que sea blanco */
+}
+
+/* --- Enlaces de Navegación --- */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #adb5bd; /* Un blanco más suave para enlaces no activos */
+    padding: 0.5rem 1rem !important; /* Padding consistente */
+    border-radius: 8px; /* Esquinas redondeadas */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 0.25rem; /* Pequeño espacio entre enlaces */
+}
+
+/* --- Efecto Hover / Focus en Enlaces --- */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: #ffffff; /* Blanco brillante al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.1); /* Un fondo sutil */
+}
+
+/* --- Enlace Activo (.active) --- */
+.navbar-nav .nav-link.active {
+    color: #ffffff;
+    font-weight: 600;
+    /* Usamos el color primario de Bootstrap para destacar */
+    background-color: #0d6efd; 
+}
+
+/* --- Botón Toggler (Menú Hamburguesa) --- */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2); /* Borde más sutil */
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Sombra de foco azul */
+}
+
+.navbar-toggler-icon {
+    /* El icono es un SVG. Este filtro lo hace blanco y nítido. */
+    filter: invert(1) grayscale(100) brightness(200%);
+}
+
+/* --- Estilos para el Menú Colapsado (Móvil) --- */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        margin-top: 1rem; /* Espacio arriba de los enlaces en móvil */
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem !important; /* Enlaces un poco más altos en móvil */
+        margin-left: 0;
+        margin-bottom: 0.25rem; /* Espacio entre enlaces */
+    }
+}
