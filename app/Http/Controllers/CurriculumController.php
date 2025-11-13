@@ -91,11 +91,11 @@ class curriculumController extends Controller
 
     public function update(Request $request, Curriculum $curriculum){
         try {
-            // 1️⃣ Actualizar los campos del formulario excepto la imagen y el checkbox
+            // Actualizar los campos del formulario excepto la imagen y el checkbox
             $curriculum->fill($request->except('image', 'delete_image'));
             $curriculum->save();
 
-            // 2️⃣ Si el usuario marcó "eliminar imagen"
+            // Si el usuario marcó "eliminar imagen"
             if ($request->has('delete_image')) {
                 if ($curriculum->path && Storage::disk('public')->exists($curriculum->path)) {
                     Storage::disk('public')->delete($curriculum->path);
@@ -104,7 +104,7 @@ class curriculumController extends Controller
                 $curriculum->save();
             }
 
-            // 3️⃣ Si se sube una nueva imagen
+            // Si se sube una nueva imagen
             if ($request->hasFile('image')) {
                 // Si ya tenía una, la borramos antes
                 if ($curriculum->path && Storage::disk('public')->exists($curriculum->path)) {
@@ -119,7 +119,7 @@ class curriculumController extends Controller
                 $curriculum->save();
             }
 
-            // 4️⃣ Redirigimos con mensaje
+            // Redirigimos con mensaje
             return redirect()->route('main.index')->with('success', 'Currículum actualizado correctamente.');
 
         } catch (\Exception $e) {
